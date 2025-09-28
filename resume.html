@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Parate - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            100% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: fadeInLeft 1s ease-out 0.3s both;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            animation: fadeInRight 1s ease-out 0.6s both;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+            padding: 40px 30px;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInSection 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 1.2s; }
+        .section:nth-child(2) { animation-delay: 1.4s; }
+        .section:nth-child(3) { animation-delay: 1.6s; }
+        .section:nth-child(4) { animation-delay: 1.8s; }
+
+        @keyframes fadeInSection {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #3498db, transparent);
+            animation: lineExpand 1s ease-out 2s both;
+        }
+
+        @keyframes lineExpand {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 4px;
+            animation: skillGrow 2s ease-out 2.5s both;
+            position: relative;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: skillShine 2s ease-out 4s;
+        }
+
+        @keyframes skillGrow {
+            from { width: 0; }
+        }
+
+        @keyframes skillShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .experience-item:hover::before {
+            left: 100%;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .item-subtitle {
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item-date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .languages-list, .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .language-tag, .interest-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            animation: tagBounce 0.6s ease-out;
+        }
+
+        .language-tag:hover, .interest-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        @keyframes tagBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .language-tag:nth-child(1) { animation-delay: 2.5s; }
+        .language-tag:nth-child(2) { animation-delay: 2.7s; }
+        .language-tag:nth-child(3) { animation-delay: 2.9s; }
+
+        .interest-tag:nth-child(1) { animation-delay: 3.1s; }
+        .interest-tag:nth-child(2) { animation-delay: 3.3s; }
+        .interest-tag:nth-child(3) { animation-delay: 3.5s; }
+        .interest-tag:nth-child(4) { animation-delay: 3.7s; }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: floatingShapes 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatingShapes {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="resume-container">
+        <header class="header">
+            <div class="profile-img">HP</div>
+            <h1 class="name">Himanshu Parate</h1>
+            <p class="title">Computer Technology Student</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>hparate02@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+91 7722063210</span>
+                </div>
+                <div class="contact-item">
+                    <span>🌍</span>
+                    <span>Chandrapur, Maharashtra</span>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <span>linkedin.com/in/himanshuparate</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <aside class="sidebar">
+                <section class="section">
+                    <h2 class="section-title">🛠 Skills</h2>
+                    <div class="skill-item">
+                        <div class="skill-name">C Language</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">C++ Language</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Java Language</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">SQL</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Git</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🌐 Languages</h2>
+                    <div class="languages-list">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">Hindi</span>
+                        <span class="language-tag">Marathi</span>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🎯 Interests</h2>
+                    <div class="interests-list">
+                        <span class="interest-tag">Web Development</span>
+                        <span class="interest-tag">AI/ML</span>
+                        <span class="interest-tag">Java Programming</span>
+                        <span class="interest-tag">Gaming</span>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="main-content">
+                <section class="section">
+                    <h2 class="section-title">👨‍🎓 About Me</h2>
+                    <p>I am a Computer Technology diploma student with a strong interest in software development and web technologies. I enjoy learning new programming languages and building practical projects to strengthen my technical skills. I am enthusiastic, quick to learn, and eager to contribute to real-world tech solutions.</p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🎓 Education</h2>
+                    <div class="education-item">
+                        <div class="item-title">Diploma in Computer Technology</div>
+                        <div class="item-subtitle">Dharampeth Polytechnic College Nagpur</div>
+                        <div class="item-date">Expected: May 2026</div>
+                        <p>Completed diploma in Computer Technology with coursework in Web Development (HTML, CSS, JavaScript, PHP), Database Management (MySQL, SQL Server), Object-Oriented Programming (C++, C#), and Software Development Fundamentals. Gained practical exposure through hands-on projects and lab assignments.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">💼 Experience</h2>
+                    <div class="experience-item">
+                        <div class="item-title">Java Intern</div>
+                        <div class="item-subtitle">IT-NetworkZ Pvt Ltd</div>
+                        <div class="item-date">June 2025 - July 2025</div>
+                        <p>I have hands-on experience in developing small projects and applications using Java, and I am eager to apply my skills in a practical internship environment. I am enthusiastic about learning and contributing to real-world software development projects.</p>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">Python Intern</div>
+                        <div class="item-subtitle">IT-NetworkZ Pvt Ltd</div>
+                        <div class="item-date">August 2025 - Saptember 2025</div>
+                        <p>I have practical experience in Python through academic projects and hands-on exercises. I am eager to apply my skills and learn further as a Python intern.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🚀 Projects</h2>
+                    <div class="experience-item">
+                        <div class="item-title">E-Commerce Platform</div>
+                        <div class="item-subtitle">Personal Project</div>
+                        <div class="item-date">March 2025</div>
+                        <p>Built a full-stack e-commerce application using React, Node.js, and MongoDB. Implemented user authentication, payment processing, and responsive design.</p>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">Task Management App</div>
+                        <div class="item-subtitle">Team Project</div>
+                        <div class="item-date">December 2023</div>
+                        <p>Developed a collaborative task management application with real-time updates using Socket.io. Led a team of 4 developers and implemented agile development practices.</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
